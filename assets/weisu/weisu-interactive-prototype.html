@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>维序 WEISU｜可点原型导览 V2.2</title>
+<style>
+:root{--navy:#172C3C;--pri:#2864D8;--pri-soft:#EFF5FF;--bg:#F4F6F9;--surface:#fff;--ink:#1C2936;--ink-2:#637386;--ink-3:#8995A3;--line:#E5EAF0;--line-2:#DDE3EA;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--ink);font-size:13px;-webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+.shell{display:grid;grid-template-columns:262px minmax(0,1fr) 296px;height:100vh}
+.side{background:#fff;border-right:1px solid var(--line);overflow:auto;padding:20px 16px 28px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 4px 16px}
+.brand-mark{width:34px;height:34px;border-radius:9px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:13px}
+.brand h1{font-size:15px;margin:0}
+.brand small{display:block;font-size:9px;letter-spacing:.14em;color:var(--ink-3);margin-top:3px}
+.side-note{font-size:10px;line-height:1.7;color:var(--ink-3);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:10px 4px;margin:0 0 14px}
+.group-label{font-size:9px;letter-spacing:.14em;color:var(--ink-3);font-weight:800;margin:16px 4px 8px}
+.nav{display:grid;gap:2px}
+.nav button{border:0;background:transparent;text-align:left;border-radius:6px;padding:8px 9px;display:flex;gap:8px;align-items:center;color:#52606D;font-size:11.5px}
+.nav button:hover{background:#F3F6FA}
+.nav button[aria-current="true"]{background:var(--pri-soft);color:var(--navy);font-weight:700;box-shadow:inset 2px 0 0 var(--pri)}
+.nav .dot{width:5px;height:5px;border-radius:50%;background:var(--line-2);flex:none}
+.nav button[aria-current="true"] .dot{background:var(--pri)}
+.stage-wrap{display:flex;flex-direction:column;min-width:0;overflow:hidden}
+.top{border-bottom:1px solid var(--line);background:#fff;padding:12px 22px;display:flex;gap:14px;align-items:center;justify-content:space-between}
+.crumb{font-size:11px;color:var(--ink-2);display:flex;gap:6px;align-items:center}
+.crumb b{color:var(--ink)}
+.tools{display:flex;gap:8px;flex:none}
+.tbtn{border:1px solid var(--line-2);background:#fff;border-radius:7px;padding:6px 10px;font-size:11px;color:var(--ink-2)}
+.tbtn:hover{border-color:#C7D2DF;color:var(--navy)}
+.tbtn.on{background:var(--pri-soft);border-color:#BBD2F2;color:var(--pri);font-weight:700}
+.stage{flex:1;min-height:0;overflow:auto;padding:22px 26px 34px;display:flex;justify-content:center;align-items:flex-start}
+.frame{position:relative;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 18px 48px rgba(23,44,60,.10);overflow:hidden}
+.frame.pc{width:min(100%,1120px)}
+.frame.pda{width:min(100%,380px);border-radius:24px}
+.frame img{display:block;width:100%;height:auto}
+.hs{position:absolute;border:0;background:transparent;border-radius:8px;transition:background .14s,box-shadow .14s}
+.hs span{position:absolute;left:50%;top:-26px;transform:translateX(-50%);background:var(--navy);color:#fff;font-size:10px;line-height:1;padding:6px 8px;border-radius:5px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .14s}
+.hs:hover{background:rgba(40,100,216,.10);box-shadow:inset 0 0 0 2px var(--pri)}
+.hs:hover span{opacity:1}
+.show-hol .hs{box-shadow:inset 0 0 0 2px rgba(40,100,216,.5);background:rgba(40,100,216,.05)}
+.insp{background:#fff;border-left:1px solid var(--line);overflow:auto;padding:20px 18px 30px}
+.insp h2{font-size:11px;letter-spacing:.12em;color:var(--ink-3);margin:0 0 10px;font-weight:800}
+.insp .title{font-size:15px;font-weight:700;line-height:1.45;margin:0 0 6px}
+.insp .sub{font-size:10px;color:var(--ink-3);margin:0 0 14px;line-height:1.6}
+.block{border-top:1px solid var(--line);padding:12px 0}
+.block-label{font-size:9px;letter-spacing:.12em;color:var(--ink-3);font-weight:800;margin-bottom:7px}
+.block p{font-size:11px;line-height:1.75;color:var(--ink-2);margin:0}
+.jump{display:grid;gap:6px}
+.jump button{border:1px solid var(--line);background:#fff;border-radius:7px;padding:8px 9px;text-align:left;font-size:11px;color:var(--ink);display:flex;justify-content:space-between;gap:8px}
+.jump button:hover{border-color:var(--pri);background:var(--pri-soft)}
+.jump i{font-style:normal;color:var(--ink-3);font-size:10px}
+.anchor{display:flex;gap:6px;font-size:10px;color:var(--ink-2);padding:5px 0;border-bottom:1px dashed var(--line);line-height:1.6}
+.anchor b{color:var(--ink);font-weight:700;flex:none}
+.pathchips{display:flex;flex-wrap:wrap;gap:5px}
+.pathchips button{border:1px solid var(--line);background:#F8FAFC;border-radius:99px;padding:5px 9px;font-size:10px;color:var(--ink-2)}
+.pathchips button:hover{background:var(--pri-soft);border-color:#BBD2F2;color:var(--pri)}
+.legend{font-size:10px;line-height:1.75;color:var(--ink-3)}
+@media(max-width:1080px){.shell{grid-template-columns:230px minmax(0,1fr)}.insp{display:none}}
+@media(max-width:720px){.shell{display:block;height:auto}.side{border-right:0;border-bottom:1px solid var(--line);max-height:40vh}.stage{padding:14px}.top{padding:10px 14px;flex-wrap:wrap;gap:8px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="brand-mark">维</div><div><h1>维序 WEISU</h1><small>INTERACTIVE WALKTHROUGH · V2.2</small></div></div>
+    <p class="side-note">16 屏界面 + 4 帧关键状态，共 20 帧。点击画面上的高亮区域跳转；每处热区都对应界面上真实存在的元素。</p>
+    <div id="navRoot"></div>
+    <div class="group-label">起始路径</div>
+    <div class="pathchips" id="pathChips"></div>
+  </aside>
+  <main class="stage-wrap">
+    <div class="top">
+      <div class="crumb" id="crumb"></div>
+      <div class="tools">
+        <button class="tbtn" id="btnPrev">← 上一帧</button>
+        <button class="tbtn" id="btnNext">下一帧 →</button>
+        <button class="tbtn on" id="btnHol">显示热区</button>
+        <button class="tbtn" id="btnReset">回到起点</button>
+      </div>
+    </div>
+    <div class="stage" id="stage"><div class="frame" id="frame"><img id="shot" alt=""><div id="hotspots"></div></div></div>
+  </main>
+  <aside class="insp">
+    <h2>当前帧</h2>
+    <p class="title" id="iTitle"></p>
+    <p class="sub" id="iSub"></p>
+    <div class="block"><div class="block-label">这一帧在讲什么</div><p id="iNote"></p></div>
+    <div class="block"><div class="block-label">可去往</div><div class="jump" id="iJump"></div></div>
+    <div class="block"><div class="block-label">数据锚点</div><div id="iAnchors"></div></div>
+    <div class="block"><div class="block-label">说明</div><p class="legend">热区坐标按 V2.2 画布布局换算为百分比，缩放窗口后依然对齐。本页只模拟页面之间的跳转，不模拟表单录入与权限判断。</p></div>
+  </aside>
+</div>
+<script src="weisu-prototype.js"></script>
+</body>
+</html>

@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>微律 V2.0 · 26 屏界面（作品集）</title>
+<style>
+:root{
+  --bg:#F7F5EE; --card:#FFFFFF; --line:#E8E3D6;
+  --green:#24583F; --green-deep:#1E4B31; --green-text:#1F4B33;
+  --ink:#1B1B1B; --ink2:#6E6E6E; --ink3:#8A8579;
+  --green-bg:#EEF3E1; --amber-bg:#FBF1E2; --amber-ink:#8A5A22; --amber-dot:#E8B36A;
+  --blue-bg:#E9F0FA; --blue-ink:#1F4A6B;
+  --purple-bg:#EFECFA; --purple-ink:#4B3F8F;
+  --track:#DCD6C8; --chip:#F2EFE6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#EBE7DE;color:var(--ink);
+  font-family:"Noto Sans SC","Source Han Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.page-head{max-width:1760px;margin:0 auto;padding:56px 40px 8px}
+.brand{font-size:12px;letter-spacing:2px;color:var(--green);font-weight:700}
+.page-head h1{font-size:38px;line-height:1.2;margin:14px 0 12px;letter-spacing:-.5px}
+.lede{font-size:15px;line-height:1.75;color:#4A4A46;max-width:880px}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;list-style:none}
+.legend li{font-size:11px;letter-spacing:.5px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#4A4A46}
+.legend li b{color:var(--green)}
+
+.wall{max-width:1760px;margin:0 auto;padding:36px 32px 90px;display:flex;flex-wrap:wrap;gap:30px 22px}
+.unit{width:402px}
+.cap{display:flex;align-items:baseline;gap:8px;margin-bottom:10px;padding-left:2px}
+.cap b{font-size:11px;letter-spacing:1.4px;color:var(--green);font-weight:700}
+.cap span{font-size:12px;color:#8A8579}
+
+/* ---------- 手机屏 ---------- */
+.screen{width:402px;height:874px;background:var(--bg);border-radius:26px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 18px 40px -18px rgba(30,40,32,.35),0 0 0 1px rgba(0,0,0,.04);position:relative}
+
+.nav{height:50px;display:flex;align-items:center;padding:0 20px;flex:0 0 auto}
+.back{font-size:19px;color:var(--ink);width:20px;line-height:1;opacity:.8}
+.nav .title{font-size:15px;font-weight:700;margin-left:9px}
+.nav .step{margin-left:auto;font-size:13px;font-weight:500;color:#5C6259;background:var(--chip);
+  border-radius:12px;padding:5px 10px}
+
+.steps{display:flex;gap:4px;padding:0 20px;margin-top:8px;flex:0 0 auto}
+.steps i{flex:1;height:7px;border-radius:4px;background:var(--track);position:relative}
+.steps i.done,.steps i.cur{background:var(--green)}
+.steps i.cur::after{content:"";position:absolute;right:-2px;top:50%;width:10px;height:10px;border-radius:50%;
+  background:var(--green-deep);transform:translateY(-50%)}
+
+.head{padding:13px 20px 0;flex:0 0 auto}
+.h1{font-size:28px;line-height:1.27;font-weight:700;letter-spacing:-.6px}
+.sub{font-size:13px;line-height:1.58;color:var(--ink2);margin-top:7px}
+
+.stack{flex:1 1 auto;display:flex;flex-direction:column;justify-content:flex-start;
+  gap:12px;padding:18px 20px 0;min-height:0}
+.grow{flex:1 1 auto;min-height:0}
+.foot{flex:0 0 auto;padding:12px 20px 0}
+.cta{height:56px;border-radius:14px;background:var(--green-deep);color:#fff;font-size:17px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;position:relative;letter-spacing:.5px}
+.cta .ar{position:absolute;right:20px;font-weight:400;opacity:.9}
+.cta.dim{background:#B3AC9B}
+.sec{height:42px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:500;color:var(--green)}
+.homebar{flex:0 0 auto;height:18px;display:flex;align-items:center;justify-content:center}
+.homebar em{width:134px;height:5px;border-radius:3px;background:#111}
+
+/* ---------- 卡片 ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 16px;flex:0 0 auto}
+.card.amber{background:var(--amber-bg);border-color:transparent}
+.card.blue{background:var(--blue-bg);border-color:transparent}
+.card.purple{background:var(--purple-bg);border-color:transparent}
+.card.plain{background:transparent;border:none;padding:0}
+.chead{display:flex;align-items:center;gap:8px}
+.chead img{width:21px;height:21px;object-fit:contain;flex:0 0 auto}
+.chead h3{font-size:16px;font-weight:700;letter-spacing:-.2px;line-height:1.35}
+.chip{margin-left:auto;font-size:11px;font-weight:500;color:#6D6A60;background:#F4F1E8;
+  border-radius:999px;padding:4px 9px;white-space:nowrap;flex:0 0 auto}
+.card.amber .chip{background:rgba(255,255,255,.6);color:var(--amber-ink)}
+.card.blue .chip{background:rgba(255,255,255,.65);color:var(--blue-ink)}
+.card.purple .chip{background:rgba(255,255,255,.65);color:var(--purple-ink)}
+.cbody{margin-top:8px}
+
+.ph{font-size:14.5px;line-height:1.55;color:#3E4340}
+.ex{font-size:12.5px;line-height:1.6;color:var(--ink3);margin-top:4px}
+.count{font-size:12px;color:var(--ink3);text-align:right;margin-top:6px}
+.ta{min-height:138px;border:1px dashed #D6D0C2;border-radius:12px;background:#FCFBF6;padding:12px 13px}
+
+.rows{display:flex;flex-direction:column;gap:7px}
+.row{display:flex;align-items:flex-start;gap:8px;font-size:13.5px;line-height:1.55;color:#22261F}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--green);margin-top:8px;flex:0 0 auto}
+.num{width:19px;height:19px;border-radius:50%;background:var(--amber-dot);color:#fff;font-size:11.5px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-top:2px}
+.numg{background:var(--green)}
+
+.kv{display:flex;flex-direction:column;gap:8px}
+.kv .item{display:flex;gap:9px;align-items:flex-start;padding-bottom:8px;border-bottom:1px dashed rgba(0,0,0,.07)}
+.kv .item:last-child{border-bottom:none;padding-bottom:0}
+.kv .k{font-size:11.5px;color:var(--ink3);width:62px;flex:0 0 auto;padding-top:3px;white-space:nowrap}
+.kv .v{flex:1;font-size:13.5px;line-height:1.5}
+
+.chiprow{display:flex;gap:7px;flex-wrap:wrap}
+.pill{font-size:13px;padding:7px 13px;border-radius:10px;background:#fff;border:1px solid var(--line);color:#33372F}
+.pill.on{background:var(--green);border-color:var(--green);color:#fff;font-weight:700}
+
+.opts{display:flex;flex-direction:column;gap:7px}
+.opt{font-size:14px;line-height:1.4;padding:11px 13px;border-radius:11px;background:#fff;border:1px solid var(--line);display:flex;align-items:center;gap:9px}
+.opt.on{background:#F1F5E8;border-color:#B9CB9A;box-shadow:0 0 0 1px #B9CB9A inset;font-weight:500}
+.opt .tick{width:15px;height:15px;flex:0 0 auto;opacity:0}
+.opt.on .tick{opacity:1}
+
+/* hero */
+.hero{background:var(--green-bg);border-radius:22px;padding:16px 17px 15px;position:relative;overflow:hidden;flex:0 0 auto}
+.hero .hchip{display:inline-block;font-size:11px;font-weight:700;color:var(--green-text);
+  background:rgba(36,88,63,.12);border-radius:999px;padding:4px 9px}
+.hero h2{font-size:20px;line-height:1.34;color:var(--green-text);font-weight:700;margin-top:9px;max-width:196px;letter-spacing:-.3px;white-space:pre-line}
+.hero p{font-size:12.5px;line-height:1.58;color:#46503F;margin-top:7px;max-width:186px}
+.hero img.ill{position:absolute;right:-6px;bottom:-8px;width:100px;height:100px;object-fit:contain}
+.hero.wmoney img.ill{width:96px;height:96px;right:-5px;bottom:-6px}
+.hero.wmoney h2{font-size:14px;color:var(--ink);font-weight:500;margin-top:10px;max-width:172px}
+.hero.wmoney .big{font-size:29px;font-weight:700;color:var(--green-text);letter-spacing:-.5px;line-height:1.1;margin-top:2px}
+.hero.wmoney .big small{font-size:13px;font-weight:500;color:var(--ink2);margin-left:6px}
+.hero.wmoney p{max-width:198px}
+
+.progstrip{background:#fff;border:1px solid var(--line);border-radius:15px;padding:11px 13px}
+.ps-row{display:flex;gap:7px}
+.ps-cell{flex:1;background:#F4F1E8;border-radius:10px;padding:8px 9px}
+.ps-cell b{display:block;font-size:12px;font-weight:700;color:var(--green);line-height:1.25}
+.ps-cell span{font-size:10.5px;color:var(--ink3)}
+.ps-cell.warn b{color:var(--amber-ink)}
+.ps-cell.unk b{color:var(--ink2)}
+
+.bar{height:6px;border-radius:4px;background:#E3D6BC;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:var(--green)}
+
+.note{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.55;color:var(--ink2)}
+.note img{width:16px;height:16px;margin-top:1px;flex:0 0 auto}
+
+/* 页脚说明（每屏一条，真实边界说明，不是填充） */
+.fn{display:flex;gap:7px;align-items:flex-start;font-size:11.5px;line-height:1.6;color:#8E8A7E;
+  padding:11px 2px 0;border-top:1px solid #E4DFD2;flex:0 0 auto}
+.fn b{color:#5C6259;font-weight:700;flex:0 0 auto}
+
+.file{display:flex;align-items:center;gap:10px;padding:10px 11px;border:1px solid var(--line);border-radius:12px;background:#fff}
+.file .fk{flex:1}
+.file .fk b{display:block;font-size:13.5px;font-weight:500}
+.file .fk span{font-size:11px;color:var(--ink3)}
+.file .box{width:19px;height:19px;border-radius:50%;border:1.5px solid #C9C3B4;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
+.file .box.on{background:var(--green);border-color:var(--green)}
+.file .box img{width:11px;height:11px}
+.file.sel{background:#F7FAF1;border-color:#C9D9B6}
+
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:12px 8px;text-align:center}
+.empty img{width:72px;height:72px;object-fit:contain}
+.empty b{font-size:13.5px;font-weight:500;color:var(--ink2)}
+.empty span{font-size:12px;color:var(--ink3);line-height:1.55}
+
+.link{display:flex;align-items:center;justify-content:space-between;font-size:13.5px;color:var(--green);font-weight:500;
+  padding:11px 13px;border-radius:11px;background:#fff;border:1px solid var(--line)}
+.link span.ar2{color:#9AA294}
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="brand">WEILU · V2.0 LEGAL AI</div>
+  <h1>全部界面 · 单页设计稿</h1>
+  <p class="lede">26 个界面统一按参考稿的版式语言重做：主结论块 + 语义色卡片组 + 状态标签 + 贴底主操作。每屏内容排到接近操作区，底部不留大面积空白。图标与插画全部是单独生成的位图资源，没有用矢量绘制。</p>
+  <ul class="legend">
+    <li><b>底色</b> #F7F5EE</li>
+    <li><b>主色</b> #24583F / CTA #1E4B31</li>
+    <li><b>结论</b> #EEF3E1</li>
+    <li><b>待核实</b> #FBF1E2</li>
+    <li><b>解释</b> #E9F0FA</li>
+    <li><b>法律依据</b> #EFECFA</li>
+    <li><b>字号</b> H1 28 / 卡标题 16 / 正文 13.5</li>
+    <li><b>圆角</b> 卡 16 / 结论块 22 / 按钮 14</li>
+  </ul>
+</header>
+
+<main id="wall" class="wall"></main>
+
+<script>
+const ICON = {
+  doc:'assets/icon-doc.png', warn:'assets/icon-warn.png', bubble:'assets/icon-bubble.png',
+  book:'assets/icon-book.png', lock:'assets/icon-lock.png', check:'assets/icon-check.png',
+  ill:'assets/hero-folder.png'
+};
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+function card(c){
+  const cls = c.kind ? ' '+c.kind : '';
+  if(c.kind==='plain') return `<section class="card plain">${c.html||''}</section>`;
+  const icon = c.icon ? `<img src="${ICON[c.icon]}" alt="">` : '';
+  const chip = c.chip ? `<i class="chip">${esc(c.chip)}</i>` : '';
+  const head = (c.title||c.icon) ? `<div class="chead">${icon}<h3>${esc(c.title||'')}</h3>${chip}</div>`
+              : (c.chip?`<div class="chead"><i class="chip" style="margin-left:0">${esc(c.chip)}</i></div>`:'');
+  return `<section class="card${cls}">${head}${c.html?`<div class="cbody">${c.html}</div>`:''}</section>`;
+}
+const bullets = arr => `<div class="rows">${arr.map(t=>`<div class="row"><i class="dot"></i><span>${t}</span></div>`).join('')}</div>`;
+const numbers = (arr,g) => `<div class="rows">${arr.map((t,i)=>`<div class="row"><span class="num${g?' numg':''}">${i+1}</span><span>${t}</span></div>`).join('')}</div>`;
+const opts = (arr, sel) => `<div class="opts">${arr.map((t,i)=>`<div class="opt${sel&&sel.includes(i)?' on':''}"><img class="tick" src="${ICON.check}" alt="">${t}</div>`).join('')}</div>`;
+const file = (name, size, sel) => `<div class="file${sel?' sel':''}"><div class="fk"><b>${name}</b><span>${size}</span></div><span class="box${sel?' on':''}">${sel?`<img src="${ICON.check}" alt="">`:''}</span></div>`;
+const files = arr => `<div style="display:flex;flex-direction:column;gap:7px">${arr.map(f=>file(f[0],f[1],f[2])).join('')}</div>`;
+const hero = o => `<section class="hero${o.money?' wmoney':''}">
+  <span class="hchip">${esc(o.chip)}</span>
+  ${o.big?`<div class="big">${o.big}</div>`:''}
+  <h2>${esc(o.title)}</h2>
+  ${o.body?`<p>${o.body}</p>`:''}
+  <img class="ill" src="${ICON.ill}" alt="">
+</section>`;
+const fn = t => `<div class="fn"><b>说明</b><span>${t}</span></div>`;
+
+/* ========== 26 个界面 ========== */
+const SCREENS = [
+/* 01 */ {cap:'S01 / Empty · 发生了什么', step:'01 / 09', h1:'发生了什么？', sub:'先把事情告诉我，不需要先判断它属于哪一种法律问题。',
+  cards:[
+    card({icon:'doc', title:'你的描述', chip:'待填写', html:`<div class="ta"><p class="ph" style="color:#A9A497">说说发生了什么，越接近日常描述越好。</p><p class="ex">例如：公司连续三个月没有按约定发工资，上周把我移出了工作群，也没有说后面怎么安排。</p></div><p class="count">0 / 1000</p>`}),
+    card({title:'常用类别（可不选，直接描述也可以）', html:`<div class="chiprow"><span class="pill">工资问题</span><span class="pill">合同问题</span><span class="pill">消费纠纷</span></div>`}),
+    card({kind:'amber', icon:'warn', title:'不知道怎么描述？先说三件事', chip:'写作提示',
+      html:numbers(['时间：什么时候发生的、持续多久','金额或约定：原本说好的是什么','对方说过什么：有没有书面或口头通知'], true)}),
+    card({kind:'blue', icon:'lock', html:`<div class="note"><span>请不要主动输入与问题无关的身份证号、银行卡号等敏感信息。</span></div>`})
+  ], cta:'继续'},
+
+/* 02 */ {cap:'S01 / Typing · 输入中', step:'01 / 09', h1:'发生了什么？', sub:'先把事情告诉我，不需要先判断它属于哪一种法律问题。',
+  cards:[
+    card({icon:'doc', title:'你的描述', chip:'正在输入', html:`<div class="ta"><p class="ph">公司连续三个月没有按约定发工资，上周把我移出了工作群，也没有说后面怎么安排。</p></div><p class="count">58 / 1000</p>`}),
+    card({title:'已选类别', html:`<div class="chiprow"><span class="pill on">工资问题</span><span class="pill">合同问题</span><span class="pill">消费纠纷</span></div>`}),
+    card({kind:'blue', icon:'bubble', title:'接下来会做什么', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">先把描述整理成可核对的事实，再逐题确认关键信息，不会直接给结论。</p>`}),
+    card({icon:'doc', title:'一句话也能开始', chip:'不必写全', html:bullets(['只写你确定发生过的部分','细节可以后面逐题补充'])}),
+    fn('字数与措辞不影响结果，只决定整理时能覆盖多少细节。')
+  ], cta:'继续'},
+
+/* 03 */ {cap:'S01 / Loading · 正在整理', step:'01 / 09', h1:'发生了什么？', sub:'正在把你描述的事情整理成可以核对的事实。',
+  cards:[
+    card({icon:'doc', title:'你的描述', chip:'已收到', html:`<p class="ph">公司连续三个月没有按约定发工资，上周把我移出了工作群，也没有说后面怎么安排。</p>`}),
+    card({kind:'amber', icon:'warn', title:'正在整理', chip:'进行中',
+      html:`<p style="font-size:13px;line-height:1.55;color:#7A5B2C">先整理时间线、涉及金额和双方沟通，再确认还缺哪些信息。</p><div class="bar"><i style="width:62%"></i></div>`}),
+    card({kind:'blue', icon:'bubble', title:'整理会做成什么', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">一份可以逐条核对的事实摘要：已记录什么、哪些待核实、哪些还未知。</p>`}),
+    card({kind:'plain', html:`<div class="link"><span>返回修改描述</span><span class="ar2">→</span></div>`}),
+    card({title:'预计还要多久', chip:'约 3 秒', html:bullets(['一般 2–5 秒完成整理','描述较长时会稍久，页面不会跳走'])}),
+    fn('整理过程不改写你的原话，原文会一起保留，方便回看。')
+  ], cta:'整理中…', ctaDim:true, sec:'暂时跳过'},
+
+/* 04 */ {cap:'S02 / Question · AI 追问', step:'02 / 09', h1:'我还需要确认几个影响判断的关键信息。', sub:'逐题确认，不确定可以选「记不清 / 不确定」，也可以跳过。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'公司有没有明确告诉你，不用继续上班了？', chip:'第 1 题',
+      html:opts(['有，明确通知我不用再上班了','没有，只是把我移出了工作群','提到过类似的话，但没有说清楚','记不清 / 不确定'])}),
+    card({kind:'blue', icon:'bubble', title:'为什么问这个', chip:'影响范围',
+      html:`<p style="font-size:13px;line-height:1.55;color:#22405C">劳动关系是否结束，会直接改变后面能主张什么、先找哪个部门。答案会被标成「用户陈述」，仍待证据核对。</p>`}),
+    card({title:'一共会问几题', chip:'按需', html:`<div class="kv"><div class="item"><span class="v">这一组最多 5 题，只问能影响判断的，答完即进入事实整理。</span></div></div>`}),
+    fn('不确定的题目直接跳过，跳过的题会在摘要里标成「未知」。')
+  ], cta:'查看事实整理', sec:'暂时跳过'},
+
+/* 05 */ {cap:'S02 / Selected · 已选', step:'02 / 09', h1:'我还需要确认几个影响判断的关键信息。', sub:'已选择第 2 项。这是你的陈述，尚未被证据核实。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'公司有没有明确告诉你，不用继续上班了？', chip:'第 1 题',
+      html:opts(['有，明确通知我不用再上班了','没有，只是把我移出了工作群','提到过类似的话，但没有说清楚','记不清 / 不确定'], [1])}),
+    card({title:'这一答会被记为', chip:'用户陈述',
+      html:bullets(['公司未以书面或口头方式明确告知劳动关系结束','被移出工作群这一情况本身，不足以证明劳动关系终止'])}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>如果后面上传的材料和这一答不一致，程序会提示冲突，由你决定以哪一条为准。</span></div>`})
+  ], cta:'查看事实整理', sec:'暂时跳过'},
+
+/* 06 */ {cap:'S02 / Loading · 整理中', step:'02 / 09', h1:'正在整理你的回答', sub:'把这一题的回答并入事实，随后会给出可核对的摘要。',
+  cards:[
+    card({icon:'doc', title:'已记录 1 项事实', chip:'待核实',
+      html:bullets(['公司未以书面或口头方式明确告知劳动关系结束','被移出工作群这一情况本身不足以证明劳动关系终止'])}),
+    card({kind:'blue', icon:'bubble', title:'整理规则', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">整理只改变表述形式，不会替你把不确定的事情写成确定的事实。</p>`}),
+    card({kind:'amber', icon:'warn', title:'还会补充什么', chip:'2 项',
+      html:numbers(['工资约定日期与欠付金额','劳动关系现在是否仍在存续'], true)}),
+    card({title:'整理完成后你可以', chip:'下一步', html:`<div class="kv"><div class="item"><span class="v">逐条核对、修改，或返回重答某一题。</span></div></div>`}),
+    card({title:'这一题影响什么', chip:'说明', html:`<p style="font-size:13px;line-height:1.55">这一答会决定先走调解，还是先确认解除是否成立。</p>`}),
+    fn('整理失败时会保留原回答，不会要求你从头再写一遍。')
+  ], cta:'整理中…', ctaDim:true, sec:'暂时跳过'},
+
+/* 07 */ {cap:'S02 / Conflict · 资料冲突', step:'02 / 09', h1:'你的回答和之前的描述不一致', sub:'两条信息指向不同结论，需要你先确认以哪一条为准。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'冲突点：劳动关系是否已结束', chip:'2 种说法',
+      html:`<div class="kv">
+        <div class="item"><span class="k">描述中</span><span class="v">最近被移出了工作群，没有说后续怎么安排。</span></div>
+        <div class="item"><span class="k">回答中</span><span class="v">公司已通知我停止工作。</span></div>
+      </div>`}),
+    card({kind:'plain', html:`<div class="chiprow"><span class="pill on">以较早的描述为准</span><span class="pill">以刚才的回答为准</span><span class="pill">两条都保留</span></div>`}),
+    card({kind:'blue', icon:'bubble', title:'选「都保留」会怎样', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">两条会同时留在事实里并标为冲突，后续分析只按较弱的那一条给范围。</p>`}),
+    card({title:'为什么不让系统替你选', chip:'规则', html:`<p style="font-size:13px;line-height:1.55">哪一条成立取决于证据，程序没有证据时只提示冲突，不替你做事实判断。</p>`}),
+    fn('确认之后仍可回到事实摘要修改，修改会保留历史记录。')
+  ], cta:'重新确认', sec:'返回修改描述'},
+
+/* 08 */ {cap:'S02 / Error · 无法整理', step:'02 / 09', h1:'现在无法继续整理', sub:'关键问题被跳过，事实链不完整，不能给出进一步判断。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'缺少这一项会怎样', 
+      html:`<p style="font-size:13.5px;line-height:1.6;color:#7A5B2C">劳动关系是否结束，直接影响后面能主张什么、找哪个部门处理。缺这一项，只能给出通用指引。</p>`}),
+    card({icon:'doc', title:'现在能做到什么', chip:'限定范围',
+      html:bullets(['给出通用准备清单，不指向具体部门','不判断任何金额或期限'])}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>重新回答这一题后，整份事实会重新整理，之前的其他回答不会被清空。</span></div>`}),
+    card({title:'两个可以选的下一步', chip:'2 种', html:numbers(['回到这一题重新回答','先按通用指引准备材料'], true)}),
+    fn('这不是系统故障：属于「信息不足以判断」的明确状态，不做模糊推测。')
+  ], cta:'重新回答', sec:'返回修改描述'},
+
+/* 09 */ {cap:'S03 / Default · 事实摘要', step:'03 / 09', h1:'先核对这份事实整理', sub:'以下内容来自你提供的信息，请检查是否准确表达了你的意思。',
+  cards:[
+    `<div class="progstrip"><div class="ps-row">
+      <div class="ps-cell"><b>4</b><span>已记录</span></div>
+      <div class="ps-cell warn"><b>1</b><span>待核实</span></div>
+      <div class="ps-cell unk"><b>3</b><span>未知</span></div></div></div>`,
+    card({icon:'doc', title:'工资支付', chip:'1 项待核实',
+      html:`<div class="kv">
+        <div class="item"><span class="k">你描述</span><span class="v">连续三个月没有按约定收到工资。</span></div>
+        <div class="item"><span class="k">待核实</span><span class="v">工资约定日期尚未确认，需以合同或发放记录核对。</span></div>
+      </div>`}),
+    card({icon:'doc', title:'劳动关系状态', chip:'未知',
+      html:`<div class="kv">
+        <div class="item"><span class="k">你描述</span><span class="v">最近被移出了工作群。</span></div>
+        <div class="item"><span class="k">提示</span><span class="v">被移出工作群不等于劳动关系已经终止，是否收到正式通知仍未确认。</span></div>
+      </div>`}),
+    card({kind:'blue', icon:'bubble', title:'这份整理怎么用', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">下一屏的分析只会引用这里已确认的内容，待核实项不会被当成结论。</p>`})
+  ], cta:'确认内容并查看分析', sec:'返回修改事实'},
+
+/* 10 */ {cap:'S03 / Editing · 编辑中', step:'03 / 09', h1:'修改这一条事实', sub:'只改表述，不要补上你没有经历过的细节。',
+  cards:[
+    card({icon:'doc', title:'工资支付', chip:'编辑中',
+      html:`<div class="kv"><div class="item"><span class="k">改为</span><span class="v">连续三个月没有按约定收到工资，最后一次发放是今年 8 月。</span></div></div>
+      <p class="ex">修改后仍标记为「用户陈述」，需要证据核对的项不会自动变成已核实。</p>`}),
+    card({kind:'amber', icon:'warn', title:'原表述', chip:'保留历史',
+      html:`<p style="font-size:13.5px;line-height:1.55;color:#7A5B2C">连续三个月没有按约定收到工资。</p>`}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>原表述不会被删除，修改记录会一起进入证据清单，方便你回看自己改过什么。</span></div>`}),
+    card({title:'可以改什么、不能改什么', chip:'边界', html:bullets(['可以改：措辞、时间、金额等你确知的细节','不能改：程序已标注的核实状态'])}),
+    fn('这一页的修改只影响你自己的记录，不会改动任何已上传的文件。')
+  ], cta:'保存这条修改', sec:'取消'},
+
+/* 11 */ {cap:'S03 / Modified · 已修改', step:'03 / 09', h1:'先核对这份事实整理', sub:'你修改了 1 条，其余内容保持原样。',
+  cards:[
+    `<div class="progstrip"><div class="ps-row">
+      <div class="ps-cell"><b>4</b><span>已记录</span></div>
+      <div class="ps-cell warn"><b>1</b><span>待核实</span></div>
+      <div class="ps-cell unk"><b>3</b><span>未知</span></div></div></div>`,
+    card({icon:'doc', title:'工资支付', chip:'已修改',
+      html:`<div class="kv"><div class="item"><span class="k">现表述</span><span class="v">连续三个月没有按约定收到工资，最后一次发放是今年 8 月。</span></div></div>
+      <p class="ex">来源标记为「用户陈述 · 已修改」。</p>`}),
+    card({icon:'doc', title:'劳动关系状态', chip:'未知',
+      html:`<div class="kv"><div class="item"><span class="k">你描述</span><span class="v">最近被移出了工作群。</span></div></div>`}),
+    card({kind:'blue', icon:'bubble', title:'改过的地方会怎样呈现', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">在分析和证据清单里，改过的条目会带「已修改」标记，便于对照原始说法。</p>`}),
+    card({title:'想改回去怎么办', chip:'可以', html:`<p style="font-size:13px;line-height:1.55">再进入这一条，选择「恢复原始表述」即可。</p>`}),
+    fn('修改不改变核实状态：待核实的仍然待核实，除非上传了对应证据。')
+  ], cta:'确认内容并查看分析', sec:'返回修改事实'},
+
+/* 12 */ {cap:'S03 / Conflict · 事实冲突', step:'03 / 09', h1:'有两条信息互相矛盾', sub:'同一件事出现两种表述时，程序不能替你选择。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'工资支付：月份不一致', chip:'需确认',
+      html:`<div class="kv">
+        <div class="item"><span class="k">原始</span><span class="v">连续三个月没有收到工资。</span></div>
+        <div class="item"><span class="k">修改后</span><span class="v">最后一次发放是今年 8 月。</span></div>
+      </div>`}),
+    card({kind:'plain', html:`<div class="chiprow"><span class="pill on">保留原始表述</span><span class="pill">使用修改后表述</span><span class="pill">两条都保留</span></div>`}),
+    card({kind:'blue', icon:'bubble', title:'冲突不会被自动抹平', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">未确认的冲突会带着标记进入分析，结论里会说明哪一项影响了判断。</p>`}),
+    card({title:'三种选择的差别', chip:'对照',
+      html:`<div class="kv">
+        <div class="item"><span class="k">留原始</span><span class="v">按较弱的一种给范围，避免高估。</span></div>
+        <div class="item"><span class="k">都保留</span><span class="v">两种说法同时进入后续材料。</span></div>
+      </div>`}),
+    card({title:'确认之后还能改吗', chip:'可以', html:`<p style="font-size:13px;line-height:1.55">可以。回到事实摘要随时修改，每次修改都会保留历史版本。</p>`}),
+    fn('冲突未解决前，「确认内容并查看分析」仍可用，但分析会标注为存在冲突。')
+  ], cta:'确认内容并查看分析', sec:'返回修改事实'},
+
+/* 13 */ {cap:'S04 / Default · 初步分析', step:'04 / 09', h1:'目前可能涉及工资支付争议', sub:'根据现有信息做初步整理，不是律师正式法律意见。',
+  cards:[
+    hero({chip:'初步结论 · 仍需核实', title:'先核对工资约定\n与实际发放记录', body:'现有信息能说明要核实什么，但不足以判断劳动关系状态。'}),
+    card({icon:'doc', title:'你提供的信息', chip:'用户陈述', html:bullets(['连续三个月没有按约定收到工资','最近被移出了工作群'])}),
+    card({kind:'amber', icon:'warn', title:'还需要核实', chip:'2 项重点',
+      html:numbers(['公司是否通过其他方式明确告知劳动关系结束','工资约定、欠付金额与发放时间分别是什么'])}),
+    card({kind:'blue', icon:'bubble', title:'目前可以怎样理解',
+      html:`<p style="font-size:13px;line-height:1.55;color:#22405C">被移出工作群不足以证明劳动关系终止；工资是否按约定发放，要结合约定与支付记录核对。</p>`}),
+    fn('本页只基于你已确认的事实，不含法律条文引用与时效判断。')
+  ], cta:'查看下一步行动', sec:'返回修改事实'},
+
+/* 14 */ {cap:'S05 / Default · 行动指引', step:'05 / 09', h1:'下一步可以怎么做？', sub:'先从最容易完成的一步开始，也可以直接申请调解。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'现在最值得先做的一件事', chip:'建议优先',
+      html:`<p style="font-size:14.5px;font-weight:700;line-height:1.45;color:#7A5B2C">固定并整理证据</p>
+      <p class="ex" style="color:#8A6A3C;margin-top:3px">先保存劳动合同、工资流水、沟通记录和工作安排。</p>
+      <div class="chiprow" style="margin-top:9px"><span class="pill">劳动合同</span><span class="pill">工资记录</span><span class="pill">沟通记录</span><span class="pill">工作安排</span></div>`}),
+    card({icon:'doc', title:'可以考虑的途径（不必依次走完）',
+      html:`<div class="kv" style="gap:9px">
+        <div class="item"><span class="num">1</span><span class="v"><b>与公司协商</b><br><span class="ex" style="margin-top:2px">适合：还能正常沟通。把事实与证据发给公司，要求书面回复。</span></span></div>
+        <div class="item"><span class="num">2</span><span class="v"><b>劳动争议调解</b><br><span class="ex" style="margin-top:2px">适合：协商无果。向当地劳动争议调解组织申请，由第三方协助核对。</span></span></div>
+      </div>`}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>这只是可选路径，不是必须依次走完的流程。你随时可以先停下或换方向。</span></div>`}) 
+  ], cta:'查看公共法律服务', sec:'了解真人律师咨询（可选）'},
+
+/* 15 */ {cap:'S05 / InfoMissing · 信息不足', step:'05 / 09', h1:'还缺一些信息', sub:'缺这几项时，只能给出通用指引，不能指向具体部门。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'以下信息缺失会限制下一步', chip:'3 项',
+      html:numbers(['工资约定日期与欠付金额','劳动合同是否签订','劳动关系现在的状态'])}),
+    card({icon:'doc', title:'可以先准备什么', chip:'不需要结论',
+      html:bullets(['能证明工作事实的材料：工牌、排班、工作群记录','能证明金额的材料：工资流水、转账记录'])}),
+    card({kind:'blue', icon:'bubble', title:'补齐之后会怎样', html:`<p style="font-size:13px;line-height:1.55;color:#22405C">可以按公司所在地指向具体调解组织，并判断是否需要准备仲裁材料。</p>`}),
+    card({title:'为什么不能先给结论', chip:'边界', html:`<p style="font-size:13px;line-height:1.55">缺关键信息时给出的结论容易让你按错误的方向准备，反而增加成本。</p>`}),
+    fn('这一页不判断金额、时效与胜算，只说明缺什么会限制哪一步。')
+  ], cta:'补充信息', sec:'返回事实摘要'},
+
+/* 16 */ {cap:'S06 / Default · 公共法律服务', step:'06 / 09', h1:'公共法律服务', sub:'这是可以独立使用的公共服务，与是否付费咨询无关。',
+  cards:[
+    card({kind:'blue', icon:'bubble', title:'12348 公共法律服务', chip:'免费',
+      html:`<p style="font-size:13.5px;line-height:1.55;color:#22405C">能拿到什么：法律咨询与服务引导。适合什么情况：想先问清流程、不想先付费。</p>
+      <div class="link" style="margin-top:10px"><span>拨打 12348 热线</span><span class="ar2">→</span></div>`}),
+    card({icon:'doc', title:'劳动争议在线调解', chip:'可选',
+      html:`<p style="font-size:13.5px;line-height:1.55">能拿到什么：由调解组织协助核对情况。适合什么情况：希望对方一起把事实说清。</p>
+      <div class="link" style="margin-top:10px"><span>查找本地调解组织</span><span class="ar2">→</span></div>`}),
+    card({title:'服务边界', chip:'须知', html:`<div class="kv"><div class="item"><span class="v">公共法律服务不替代律师代理，也不对结果作出承诺。</span></div><div class="item"><span class="v">电话与在线渠道的可用时间以当地公布为准。</span></div><div class="item"><span class="v">本页不收取任何费用，也不推销付费咨询。</span></div></div>`}),
+    fn('两条渠道都由当地司法行政部门负责，微律只做引导，不代为受理。')
+  ], cta:'返回行动指引'},
+
+/* 17 */ {cap:'S07 / Default · 真人律师咨询', step:'07 / 09', h1:'真人律师咨询', sub:'先了解清楚再决定是否继续，未落实前不可预约。',
+  cards:[
+    hero({money:true, chip:'首次咨询 · 价格示意', big:'¥9.9<small>首次</small>', title:'价格仅用于说明服务形式', body:'律师合作、资质、时长均未落实，当前不可预约或支付。'}),
+    card({icon:'bubble', title:'为什么可能需要真人律师', chip:'可选',
+      html:`<p style="font-size:13.5px;line-height:1.6">律师可以结合你整理好的事实和证据，确认具体情况、判断可能范围。觉得已经清楚，也可以自己处理。</p>`}),
+    card({kind:'amber', icon:'warn', title:'还没有落实的部分', chip:'不可预约',
+      html:bullets(['律师资质与擅长领域未核验','服务时长与交付形式未确认'])}),
+    card({title:'你还可以', chip:'两条路', html:numbers(['先自己处理，材料已齐可直接申请调解','等律师与价格落实后再回来预约'], true)}),
+    fn('在律师与价格落实前，本页无下单与支付入口。')
+  ], cta:'了解服务边界', ctaDim:true, sec:'先自己处理'},
+
+/* 18 */ {cap:'S08 / Default · 资料选择', step:'08 / 09', h1:'选择需要提供的资料', sub:'只选择与本次咨询有关的材料，不需要全部上传。',
+  cards:[
+    card({title:'上传材料', chip:'PDF / 图片',
+      html:`<p class="ex">支持 PDF 与图片，单份不超过 10 MB。</p>
+      <div class="link" style="margin-top:10px"><span>＋ 选择文件</span><span class="ar2">→</span></div>`}),
+    card({title:'劳动关系', chip:'2 个文件', html:files([['劳动合同.pdf','PDF · 1.2 MB',true],['入职材料.pdf','PDF · 0.8 MB',false]])}),
+    card({kind:'blue', icon:'lock', html:`<div class="note"><span>这里只是选择，确认页之前不会有任何资料被发送出去。</span></div>`}),
+    card({title:'文件会上传到哪', chip:'先说清楚', html:`<p style="font-size:13px;line-height:1.55">确认授权前，文件只在本机暂存，不会上传。</p>`}),
+    fn('本页最多选 3 份，选多了反而会让重点材料不突出。')
+  ], cta:'继续（已选 2 / 3）', sec:'返回事实摘要'},
+
+/* 19 */ {cap:'S08 / Selected · 已选 3 项', step:'08 / 09', h1:'选择需要提供的资料', sub:'已选 3 份，继续后仍可在确认页取消。',
+  cards:[
+    card({title:'劳动关系', chip:'2 个文件', html:files([['劳动合同.pdf','PDF · 1.2 MB',true],['入职材料.pdf','PDF · 0.8 MB',true]])}),
+    card({title:'工资记录', chip:'1 个文件', html:files([['工资流水.pdf','PDF · 2.4 MB',true]])}),
+    card({kind:'amber', icon:'warn', title:'已达本次上限', chip:'3 / 3', html:`<p style="font-size:13px;line-height:1.55;color:#7A5B2C">再选需要先取消其中一份，避免一次提供过多无关材料。</p>`}),
+    card({title:'继续之后', chip:'下一步', html:`<p style="font-size:13px;line-height:1.55">进入授权确认页，逐项查看接收方与用途。</p>`}),
+    fn('取消选择不会删除文件，文件始终留在你的设备上。')
+  ], cta:'继续（已选 3 / 3）', sec:'返回事实摘要'},
+
+/* 20 */ {cap:'S08 / Empty · 暂无材料', step:'08 / 09', h1:'选择需要提供的资料', sub:'只选择与本次咨询有关的材料，不需要全部上传。',
+  cards:[
+    card({html:`<div class="empty"><img src="${ICON.ill}" alt=""><b>暂时没有可提供的材料</b><span>没有材料也可以继续，后续咨询时再补。</span></div>`}),
+    card({icon:'doc', title:'手边没有文件也可以', chip:'可选',
+      html:bullets(['用文字补充关键时间和金额，同样能被记录'])}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>不提供材料不会影响你获得通用指引，只是可核实的细节会少一些。</span></div>`}),
+    card({icon:'doc', title:'常见的可上传文件', chip:'参考',
+      html:`<div class="chiprow"><span class="pill">劳动合同</span><span class="pill">工资流水</span><span class="pill">工作群记录</span><span class="pill">排班表</span></div><p class="ex">没有也没关系，文字描述同样会被记录。</p>`})
+  ], cta:'跳过上传，继续', sec:'返回事实摘要'},
+
+/* 21 */ {cap:'S08 / Error · 上传失败', step:'08 / 09', h1:'这份文件没能上传', sub:'文件可能损坏，或超出了单份 10 MB 的限制。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'劳动合同.pdf 上传失败', chip:'12.4 MB',
+      html:`<p style="font-size:13.5px;line-height:1.55;color:#7A5B2C">超过单份 10 MB 的限制。压缩或重新导出一份后再试，其他已选文件不受影响。</p>
+      <div class="link" style="margin-top:10px;background:rgba(255,255,255,.65);border-color:transparent"><span>重新选择文件</span><span class="ar2">→</span></div>`}),
+    card({title:'已成功的文件', chip:'1 个', html:files([['入职材料.pdf','PDF · 0.8 MB',true]])}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>失败的文件不会被记录，也不会被上传到任何地方。</span></div>`}),
+    card({title:'如果一直失败', chip:'两种办法', html:numbers(['用手机拍照后上传图片','只保留关键页，其余不必上传'], true)}),
+    fn('失败原因会一起显示：大小超限、格式不支持或文件损坏。')
+  ], cta:'继续（已选 1 / 3）', sec:'稍后再说'},
+
+/* 22 */ {cap:'S08 / Preview · 预览', step:'08 / 09', h1:'预览这份材料', sub:'预览不等于授权，未经确认不会发送给任何一方。',
+  cards:[
+    card({title:'劳动合同.pdf', chip:'第 1 页 / 共 6 页',
+      html:`<div style="height:196px;border:1px solid var(--line);border-radius:12px;background:#FBFAF5;display:flex;align-items:center;justify-content:center">
+        <img src="${ICON.doc}" alt="" style="width:50px;height:50px;opacity:.32">
+      </div>
+      <p class="ex">只显示文件内容，不显示任何关于案件判断的结论。</p>`}),
+    card({kind:'blue', icon:'lock', title:'预览阶段的状态', chip:'未发送',
+      html:`<div class="kv"><div class="item"><span class="v">文件仍在你的设备上，接收方与用途尚未确认。</span></div></div>`}),
+    card({title:'文件信息', chip:'本机',
+      html:`<div class="kv"><div class="item"><span class="k">页数</span><span class="v">6 页</span></div><div class="item"><span class="k">大小</span><span class="v">1.2 MB</span></div><div class="item"><span class="k">上传时间</span><span class="v">刚刚 · 仅本机保存</span></div></div>`}),
+    fn('预览只读取你主动选择的文件，不扫描设备中的其他内容。')
+  ], cta:'加入本次资料', sec:'返回资料列表'},
+
+/* 23 */ {cap:'S09 / Default · 授权确认', step:'09 / 09', h1:'确认资料与授权', sub:'请确认你了解本次资料将提供给谁，以及将用于什么目的。',
+  cards:[
+    card({icon:'lock', title:'资料将被保护地提供', chip:'未发送',
+      html:`<p style="font-size:13.5px;line-height:1.55">接收方、用途与范围见下方清单，确认前不会发送任何资料。</p>`}),
+    card({title:'接收方、用途与范围',
+      html:`<div class="kv">
+        <div class="item"><span class="k">提供给谁</span><span class="v">尚未确认 · 服务方未落实</span></div>
+        <div class="item"><span class="k">用于什么</span><span class="v">本次法律咨询及相关服务处理</span></div>
+        <div class="item"><span class="k">包含文件</span><span class="v">劳动合同.pdf 等 3 个文件</span></div>
+      </div>`}),
+    card({kind:'amber', icon:'warn', title:'授权范围可以拆开', chip:'可只选一部分',
+      html:`<p style="font-size:13px;line-height:1.55;color:#7A5B2C">你可以只授权查看其中一份文件，或关闭转发给第三方的权限。</p>`}),
+    card({title:'你可以随时撤回', chip:'未提交前',
+      html:`<div class="kv"><div class="item"><span class="v">未提交前：直接取消授权，不产生任何记录。</span></div><div class="item"><span class="v">提交后：在授权记录里撤回，已发送部分按规则处理。</span></div></div>`}),
+    fn('你的勾选与选择会单独记录，便于之后撤回或调整。')
+  ], cta:'确认并提交', ctaDim:true, sec:'取消授权'},
+
+/* 24 */ {cap:'S09 / Checked · 已确认', step:'09 / 09', h1:'确认资料与授权', sub:'你已勾选全部条款，接收方仍未核验。',
+  cards:[
+    card({icon:'lock', title:'资料将被保护地提供', chip:'待提交',
+      html:`<div class="rows">
+        <div class="row"><img src="${ICON.check}" style="width:15px;height:15px;margin-top:2px" alt=""><span>我已阅读并理解用途说明</span></div>
+        <div class="row"><img src="${ICON.check}" style="width:15px;height:15px;margin-top:2px" alt=""><span>我同意在本次咨询范围内提供上述资料</span></div>
+      </div>`}),
+    card({title:'接收方、用途与范围',
+      html:`<div class="kv">
+        <div class="item"><span class="k">提供给谁</span><span class="v">尚未确认 · 服务方未落实</span></div>
+        <div class="item"><span class="k">包含文件</span><span class="v">劳动合同.pdf 等 3 个文件</span></div>
+      </div>`}),
+    card({kind:'amber', icon:'warn', title:'提交后会发生什么', chip:'待匹配',
+      html:`<p style="font-size:13px;line-height:1.55;color:#7A5B2C">提交后进入「待匹配」状态，不会直接发送。接收方确认前，你仍可以撤回授权。</p>`}),
+    card({title:'你的勾选记录', chip:'2 项',
+      html:`<div class="kv"><div class="item"><span class="k">用途说明</span><span class="v">已阅读 · 刚刚</span></div><div class="item"><span class="k">资料范围</span><span class="v">已同意 · 3 个文件</span></div><div class="item"><span class="k">转发第三方</span><span class="v">未授权</span></div></div>`}),
+    fn('撤回授权不需要联系客服，在授权记录里即可操作。')
+  ], cta:'确认并提交', ctaDim:true, sec:'取消授权'},
+
+/* 25 */ {cap:'S09 / RightsExpanded · 权限展开', step:'09 / 09', h1:'你授权的具体范围', sub:'逐项展开，可以只授权其中一部分。',
+  cards:[
+    card({icon:'lock', title:'本次授权范围', chip:'可拆分',
+      html:`<div class="kv">
+        <div class="item"><span class="v"><b>查看劳动合同</b><br><span class="ex">仅用于核对工资约定与劳动关系状态。</span></span>
+          <span style="width:19px;height:19px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;flex:0 0 auto"><img src="${ICON.check}" style="width:11px;height:11px" alt=""></span></div>
+        <div class="item"><span class="v"><b>查看工资流水</b><br><span class="ex">仅用于核对发放时间与金额。</span></span>
+          <span style="width:19px;height:19px;border-radius:50%;border:1.5px solid #C9C3B4;flex:0 0 auto"></span></div>
+        <div class="item"><span class="v"><b>转发给第三方</b><br><span class="ex">默认关闭，需要单独确认。</span></span>
+          <span style="width:19px;height:19px;border-radius:50%;border:1.5px solid #C9C3B4;flex:0 0 auto"></span></div>
+      </div>`}),
+    card({kind:'blue', icon:'bubble', html:`<div class="note"><span>未勾选的项不会随本次提交一起发送，之后也不会自动补发。</span></div>`}),
+    card({title:'授权有效期', chip:'独立计时',
+      html:`<div class="kv"><div class="item"><span class="v">每项授权单独计时，到期自动关闭，不会默认续期。</span></div></div>`}),
+    card({title:'谁可以看到', chip:'只有你', html:`<p style="font-size:13px;line-height:1.55">授权记录只在你自己的账户可见，不同步给其他咨询人。</p>`}),
+    fn('每项授权都有独立有效期，到期后自动失效，不会默认续期。')
+  ], cta:'保存授权选择', sec:'取消授权'},
+
+/* 26 */ {cap:'S09 / ReceiverUnverified · 接收方未核验', step:'09 / 09', h1:'确认资料与授权', sub:'接收方与服务范围尚未核验，本次不能提交。',
+  cards:[
+    card({kind:'amber', icon:'warn', title:'接收方未核验，授权保持关闭', chip:'禁用',
+      html:`<p style="font-size:13.5px;line-height:1.6;color:#7A5B2C">在接收方身份、服务范围与用途未核验前，提交按钮保持禁用，资料不会离开你的设备。</p>`}),
+    card({title:'当前状态',
+      html:`<div class="kv">
+        <div class="item"><span class="k">接收方</span><span class="v">未核验</span></div>
+        <div class="item"><span class="k">服务范围</span><span class="v">未确认</span></div>
+        <div class="item"><span class="k">已选资料</span><span class="v">3 个文件，未发送</span></div>
+      </div>`}),
+    card({icon:'doc', title:'你可以先在本地做的', chip:'不依赖服务方', html:bullets(['保存并核对事实摘要','按清单整理证据材料'])}),
+    card({title:'核验完成后会怎样', chip:'下一步', html:`<p style="font-size:13px;line-height:1.55">接收方核验通过后，本页会显示其身份与服务范围，并恢复提交按钮。</p>`}),
+    fn('按钮禁用是设计上的安全状态，不是加载失败，也不会自动重试提交。')
+  ], cta:'确认并提交', ctaDim:true, sec:'保存资料选择'}
+];
+
+/* 渲染 */
+const stepBar = step => {
+  const n = parseInt(step, 10);
+  return `<div class="steps">${Array.from({length:9},(_,i)=>{
+    const cls = i+1 < n ? 'done' : (i+1 === n ? 'cur' : '');
+    return `<i class="${cls}"></i>`;
+  }).join('')}</div>`;
+};
+document.getElementById('wall').innerHTML = SCREENS.map((s,i)=>`
+  <div class="unit">
+    <div class="cap"><b>${String(i+1).padStart(2,'0')}</b><span>${esc(s.cap)}</span></div>
+    <div class="screen" data-i="${i+1}">
+      <div class="nav"><span class="back">‹</span><span class="title">微律</span><span class="step">${s.step}</span></div>
+      ${stepBar(s.step)}
+      <div class="head"><div class="h1">${esc(s.h1)}</div><div class="sub">${esc(s.sub)}</div></div>
+      <div class="stack">${s.cards.join('')}<div class="grow"></div></div>
+      <div class="foot">
+        <div class="cta${s.ctaDim?' dim':''}">${esc(s.cta||'继续')}${(s.cta&&s.cta.length<=14)?'<span class="ar">→</span>':''}</div>
+        ${s.sec?`<div class="sec">${esc(s.sec)}</div>`:''}
+      </div>
+      <div class="homebar"><em></em></div>
+    </div>
+  </div>`).join('');
+
+/* 单屏导出模式：#only=17 只渲染第 17 屏，便于逐张导出 PNG */
+const only = (location.hash.match(/^#only=(\d+)$/)||[])[1];
+if(only){
+  const n = Number(only);
+  document.querySelector('.page-head').remove();
+  [...document.querySelectorAll('.unit')].forEach((u,i)=>{ if(i+1!==n) u.remove(); });
+  const wall = document.getElementById('wall');
+  wall.style.cssText='padding:0;max-width:none;display:block;gap:0';
+  document.querySelector('.unit').style.width='402px';
+  document.querySelector('.cap').remove();
+  document.body.style.cssText='background:transparent;margin:0';
+  document.querySelector('.screen').style.boxShadow='none';
+  document.querySelector('.screen').style.borderRadius='0';
+}
+
+/* 自检面板：地址加 #q 打开，直接读每屏的底部空隙与内容溢出 */
+function runCheck(){
+  const rows = [...document.querySelectorAll('.screen')].map(el=>{
+    const stack = el.querySelector('.stack');
+    const grow = el.querySelector('.grow');
+    const over = Math.round(stack.scrollHeight - stack.clientHeight);
+    return `<span><b>${el.dataset.i}</b> left ${Math.round(grow.getBoundingClientRect().height)} · ov ${over}</span>`;
+  });
+  const bar = document.createElement('div');
+  bar.id='dbg';
+  bar.style.cssText='position:fixed;inset:0 auto auto 0;width:100%;background:#fff;z-index:99;padding:12px 20px;font:14px/1.7 ui-monospace,monospace;display:grid;grid-template-columns:repeat(5,1fr);gap:0 14px;box-shadow:0 2px 8px rgba(0,0,0,.12)';
+  bar.innerHTML = rows.join('');
+  document.body.appendChild(bar);
+  window.scrollTo(0,0);
+}
+if(location.hash==='#q') runCheck();
+</script>
+<a href="../../case-weilu.html" style="position:fixed;left:20px;bottom:20px;z-index:120;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#1E4B31;color:#fff;font:600 13px/1 'Noto Sans SC','PingFang SC',sans-serif;text-decoration:none;box-shadow:0 8px 20px -8px rgba(30,75,49,.6)">&larr; 返回微律案例</a>
+</body>
+</html>
+
