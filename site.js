@@ -3,10 +3,10 @@
   const $ = (s, root=document) => root.querySelector(s);
   const esc = (v='') => String(v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const linkTo = p => p.caseStudyPath || `case-${encodeURIComponent(p.slug)}.html`;
-  const card = (p,i) => `<article class="project-card" data-category="${esc(p.category)}" data-search="${esc([p.title,p.english,p.subtitle,p.summary,p.category,...p.tags].join(' ').toLowerCase())}"><a class="project-card-link" href="${linkTo(p)}"><div class="project-image"><img src="${esc(p.cover)}" alt="${esc(p.coverAlt||p.title)}" loading="lazy"></div><div class="project-info"><h3>${esc(p.title)} <span class="project-number">/ 0${i+1}</span></h3><span class="project-subtitle">${esc(p.subtitle)}</span><div class="project-tags">${(p.tags||[]).slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div></a></article>`;
+  const card = (p,i) => `<article class="project-card" data-category="${esc(p.category)}" data-search="${esc([p.title,p.english,p.subtitle,p.summary,p.category,...p.tags].join(' ').toLowerCase())}"><a class="project-card-link" href="${linkTo(p)}"><div class="project-image"><img src="${esc(p.cover)}" alt="${esc(p.coverAlt||p.title)}" loading="lazy"></div><div class="project-info"><h3>${esc(p.title)} <span class="project-number">/ 0${i+1}</span></h3><span class="project-subtitle">${esc(p.subtitle)}</span><div class="project-tags">${(p.tags||[]).slice(0,5).map(t=>`<span>${esc(t)}</span>`).join('')}</div></div></a></article>`;
   function renderHome(){
     const root=$('#featured-projects'); if(!root)return;
-    const featured=projects.filter(p=>p.featured).slice(0,4);
+    const featured=projects.filter(p=>p.featured).slice(0,6);
     root.innerHTML=featured.map((p,i)=>card(p,i)).join('');
     const count=$('#home-project-count'); if(count)count.textContent=String(featured.length).padStart(2,'0');
     const range=$('#featured-range'); if(range)range.textContent=featured.length?`01 — ${String(featured.length).padStart(2,'0')}`:'00';
@@ -84,3 +84,4 @@
   if(viewer)viewer.addEventListener('click',e=>{if(e.target===viewer && viewer.open)viewer.close();});
   renderHome();renderWork();renderCase();
 })();
+

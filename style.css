@@ -116,3 +116,12 @@ a.eyebrow,.eyebrow span{color:#5b645d}
 .contact-card .contact-email:hover{color:#3f5a4a;border-bottom-color:#3f5a4a}
 @media(max-width:620px){.contact-card .contact-email{font-size:23px}}
 
+
+/* SOUNDSPACE 封面：16:9 车机界面完整显示，不裁切 */
+.case-cover[src*="assets/soundspace/"]{height:auto;max-height:none;aspect-ratio:16/9}
+@media(max-width:620px){.case-cover[src*="assets/soundspace/"]{height:auto;aspect-ratio:16/9}}
+
+/* 第 5 个精选作品：车载 HMI 全宽收束，16:9 原图不裁切 */
+.project-grid-home .project-card:nth-child(5){grid-column:1/-1;padding-top:clamp(30px,5vw,70px)}
+.project-grid-home .project-card:nth-child(5) .project-image{aspect-ratio:1.78}
+@media(max-width:850px){.project-grid-home .project-card:nth-child(5){grid-column:span 12;padding-top:0}}
