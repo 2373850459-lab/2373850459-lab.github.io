@@ -56,9 +56,7 @@ window.PORTFOLIO_PROJECTS = [
           ["打开联系人列表", "显示联系人，由老人查找并选择。", "适合对象不明确或需要临时换人，但增加查找负担。"],
           ["先确认联系人", "展示称谓和头像，等待老人选择拨出或返回。", "识别对象明确时保留纠正机会，是当前方案。"]
         ],
-        images: [
-          {src:"assets/homie/homie-12.webp", alt:"确认联系人界面，显示女儿头像和拨出入口", caption:"确认对象后再发出来电邀请。", size:"wide"}
-        ]
+        images: []
       },
       {
         id: "ecosystem", eyebrow: "04 / ECOSYSTEM", title: "机器人、穿戴设备和家人手机，各自承担不同职责。",
